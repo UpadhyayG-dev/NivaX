@@ -1,0 +1,50 @@
+class Utils {
+    static showToast(message, type = 'info') {
+        const toast = document.getElementById('toast-notification');
+        toast.textContent = message;
+        toast.className = 'show';
+        
+        if (type === 'success') toast.classList.add('success');
+        else if (type === 'error') toast.classList.add('error');
+        else if (type === 'info') toast.classList.add('info');
+        else if (type === 'warning') toast.classList.add('warning');
+        
+        setTimeout(() => { 
+            toast.className = toast.className.replace('show', ''); 
+        }, 3000);
+    }
+
+    static formatDate(date) {
+        return new Date(date).toLocaleDateString('hi-IN');
+    }
+
+    static formatDateTime(date) {
+        return new Date(date).toLocaleString('hi-IN');
+    }
+
+    static generateId(prefix = 'NX') {
+        return `${prefix}${Math.floor(100000 + Math.random() * 900000)}`;
+    }
+
+    static validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    static validateMobile(mobile) {
+        const re = /^[6-9]\d{9}$/;
+        return re.test(mobile);
+    }
+
+    static debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+}
