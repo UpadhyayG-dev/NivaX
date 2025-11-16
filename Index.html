@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIVARANX - eGov. + non-Gov. Services Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- App Intro Sequence -->
+    <div id="splash-screen">
+        <div id="logo-intro" class="splash-content visible">
+            <img src="https://img1.wsimg.com/isteam/ip/e8186a9b-5cfd-4d09-9ac8-87df4de0cc9e/IMG-20251109-WA0001.jpg" alt="NIVARANX Logo" class="logo-image">
+            <div class="logo-text"><h1>NIVARANX</h1></div>
+        </div>
+        <div id="intro-slides" class="splash-content">
+            <div class="slide active"><h2>Welcome To NIVARANX</h2><p>India's Own AI-Powered Digital Samadhan Ecosystem</p></div>
+            <div class="slide"><h2>NIVARANX</h2><p>National Initiative for Virtual Assistance and Resolution Across Nations Xperience</p></div>
+            <div class="slide"><h2>Smartly. Instantly. Perfectly....</h2><p>Aapka vishwas, hamari pratibaddhata.</p></div>
+        </div>
+        <div id="fingerprint-scanner" class="splash-content">
+            <div class="scanner-circle"></div>
+            <div class="scanner-circle"></div>
+            <i class="fas fa-fingerprint fingerprint-icon"></i>
+            <div class="scan-line"></div>
+            <p style="margin-top: 20px; opacity: 0.7;">Authenticate karne ke liye tap karein</p>
+        </div>
+    </div>
+    
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="logo">
+            <img src="https://img1.wsimg.com/isteam/ip/e8186a9b-5cfd-4d09-9ac8-87df4de0cc9e/IMG-20251109-WA0001.jpg" alt="NIVARANX Logo" class="logo-image-header">
+            <div class="logo-text"><h1>NIVARANX</h1></div>
+        </div>
+        <div class="logo">
+            <img src="https://img1.wsimg.com/isteam/ip/e8186a9b-5cfd-4d09-9ac8-87df4de0cc9e/IMG-20251110-WA0003.jpg" alt="Digital India Logo" class="logo-image-header">
+            <img src="https://img1.wsimg.com/isteam/ip/e8186a9b-5cfd-4d09-9ac8-87df4de0cc9e/Black%20and%20Green%20Illustrative%20Dashboard-d68f2ae.jpg" alt="Digital India Logo" class="logo-image-header">
+        </div>
+        <div class="header-actions">
+            <button class="header-btn" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main App Content -->
+    <div class="app-container">
+        <div class="hero-card">
+            <h1 class="hero-title">India's Own AI-Powered Digital Samadhan Ecosystem</h1>
+            <p class="hero-text">Smartly. Instantly. Perfectly.....</p>
+            <div class="search-bar">
+                <input type="text" id="serviceSearchInput" placeholder="Explore section me jaakar services dhundhein..." disabled>
+                <button onclick="ModalManager.openModal('exploreModal')"><i class="fas fa-external-link-alt"></i></button>
+            </div>
+        </div>
+        <div class="initiative-highlight">An Initiative By UPADHYAYG</div>
+        
+        <!-- YouTube Video Section -->
+        <div class="video-section">
+            <div class="video-container">
+                <h3 class="video-title">
+                    <i class="fas fa-play"></i> NIVARANX INTRODUCTION
+                </h3>
+                <div class="video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/4VvPhx-jS3Q" 
+                        title="NIVARANX INTRODUCTION"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="video-description">NIVARANX के बारे में संपूर्ण जानकारी इस वीडियो में देखें</p>
+            </div>
+        </div>
+
+        <!-- AI Eligibility Section -->
+        <div class="ai-eligibility-section">
+            <h2 class="section-title"><i class="fas fa-robot"></i> NivaX AI Assistant ✨</h2>
+            <p style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 15px;">अपनी ज़रूरतें बताएं और AI आपको सही सेवा ढूंढने में मदद करेगा।</p>
+            <textarea id="eligibilityQuery" placeholder="उदाहरण: मैं एक किसान हूँ और मुझे सरकारी सहायता चाहिए। मेरी वार्षिक आय ₹3 लाख है।"></textarea>
+            <button class="btn btn-primary" onclick="Chatbot.checkEligibilityWithAI()">
+                <i class="fas fa-search"></i> Check Now
+            </button>
+            <div id="eligibilityResults" class="ai-eligibility-results">
+                यहां AI-आधारित सुझाव दिखाई देंगे।
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="serviceModal">
+        <div class="modal-content" id="serviceModalContent"></div>
+    </div>
+    <div class="modal" id="processModal">
+        <div class="modal-content" id="processModalContent"></div>
+    </div>
+    <div class="modal" id="formModal">
+        <div class="modal-content" id="formModalContent"></div>
+    </div>
+    <div class="modal" id="paymentModal">
+        <div class="modal-content" id="paymentModalContent"></div>
+    </div>
+    <div class="modal" id="receiptModal">
+        <div class="modal-content" id="receiptModalContent"></div>
+    </div>
+    <div class="modal" id="loginModal">
+        <div class="modal-content" id="loginModalContent"></div>
+    </div>
+    <div class="modal" id="discoverModal">
+        <div class="modal-content" id="discoverModalContent"></div>
+    </div>
+    <div class="modal" id="exploreModal">
+        <div class="modal-content" id="exploreModalContent"></div>
+    </div>
+    <div class="modal" id="updatesModal">
+        <div class="modal-content" id="updatesModalContent"></div>
+    </div>
+    <div class="modal" id="profileModal">
+        <div class="modal-content" id="profileModalContent"></div>
+    </div>
+    <div class="modal" id="documentScannerModal">
+        <div class="modal-content" id="documentScannerModalContent"></div>
+    </div>
+
+    <!-- Document Preview Modal -->
+    <div class="document-preview-modal" id="documentPreviewModal">
+        <div class="document-preview-content">
+            <div class="close-preview" onclick="ModalManager.closeDocumentPreview()">&times;</div>
+            <img id="fullDocumentPreview" src="" alt="Document Preview">
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-target="home">
+            <div class="nav-icon"><i class="fas fa-home"></i></div>
+            <span class="nav-label">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-target="discover">
+            <div class="nav-icon"><i class="fas fa-compass"></i></div>
+            <span class="nav-label">Discover</span>
+        </a>
+        <a href="#" class="nav-item" data-target="explore">
+            <div class="nav-icon"><i class="fas fa-infinity"></i></div>
+            <span class="nav-label">Explore</span>
+        </a>
+        <a href="#" class="nav-item" data-target="updates">
+            <div class="nav-icon"><i class="fas fa-newspaper"></i></div>
+            <span class="nav-label">Updates</span>
+        </a>
+        <a href="#" class="nav-item" data-target="profile">
+            <div class="nav-icon"><i class="fas fa-user"></i></div>
+            <span class="nav-label">Account</span>
+        </a>
+    </nav>
+    
+    <!-- Toast Notification -->
+    <div id="toast-notification"></div>
+
+    <!-- Hidden File Inputs -->
+    <input type="file" id="fileInput" accept="image/*,application/pdf" style="display: none;">
+    <input type="file" id="paymentScreenshotInput" accept="image/*" style="display: none;">
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="js/documents.js"></script>
+    <script src="js/payments.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
